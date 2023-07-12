@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const path = require("path");
+const path = require("path")
 
 /** @type {import("eslint").Linter.Config} */
 const config = {
@@ -19,7 +19,12 @@ const config = {
     project: path.join(__dirname, "tsconfig.json"),
   },
   plugins: ["@typescript-eslint"],
-  extends: ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  extends: [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:tailwindcss/recommended",
+  ],
   rules: {
     "@typescript-eslint/consistent-type-imports": [
       "warn",
@@ -29,7 +34,24 @@ const config = {
       },
     ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "@next/next/no-html-link-for-pages": "off",
+    "react/jsx-key": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/restrict-plus-operands": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
   },
-};
+  settings: {
+    tailwindcss: {
+      callees: ["cn"],
+      config: "./tailwind.config.ts",
+    },
+    next: {
+      rootDir: ["./"],
+    },
+  },
+}
 
-module.exports = config;
+module.exports = config
